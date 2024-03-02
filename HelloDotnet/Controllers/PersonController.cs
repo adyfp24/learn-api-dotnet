@@ -19,5 +19,20 @@ namespace PercobaanApi1.Controllers
             List<Person> ListPerson = context.ListPerson();
             return Ok(ListPerson);
         }
+
+        [HttpGet("api/person/{id}")]
+        public ActionResult<Person> GetPersonById(int id)
+        {
+            PersonContext context = new PersonContext();
+            Person person = context.GetPersonById(id);
+
+            if (person == null)
+            {
+                return NotFound(); // Mengembalikan status 404 jika person tidak ditemukan
+            }
+
+            return Ok(person);
+        }
+
     }
 }

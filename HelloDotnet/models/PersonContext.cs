@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 
-
 namespace HelloDotnet.Models
 {
     public class PersonContext
@@ -24,6 +23,12 @@ namespace HelloDotnet.Models
                 });
             }
             return list1;
+        }
+
+        public Person GetPersonById(int id)
+        {
+            List<Person> allPersons = ListPerson();
+            return allPersons.Find(person => person.id_person == id);
         }
     }
 }
