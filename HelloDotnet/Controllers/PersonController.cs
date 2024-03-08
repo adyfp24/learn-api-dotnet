@@ -6,13 +6,16 @@ using System.Collections.Generic;
 
 namespace PercobaanApi1.Controllers
 {
+    [ApiController]
+    [Route("api/person")]
     public class PersonController : Controller
     {
+        [HttpGet("index")]
         public IActionResult Index()
         {
             return View();
         }
-        [HttpGet("api/person")]
+        [HttpGet]
         public ActionResult<Person> ListPerson()
         {
             PersonContext context = new PersonContext();
@@ -20,7 +23,7 @@ namespace PercobaanApi1.Controllers
             return Ok(ListPerson);
         }
 
-        [HttpGet("api/person/{id}")]
+        [HttpGet("{id}")]
         public ActionResult<Person> GetPersonById(int id)
         {
             PersonContext context = new PersonContext();
@@ -28,7 +31,7 @@ namespace PercobaanApi1.Controllers
 
             if (person == null)
             {
-                return NotFound(); // Mengembalikan status 404 jika person tidak ditemukan
+                return NotFound(); 
             }
 
             return Ok(person);
