@@ -1677,11 +1677,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/macbook/Documents/learn-api-dotnet/HelloDotnet/HelloDotnet.csproj",
+      "projectUniqueName": "/Users/macbook/Documents/paa-task-dotnet/task1_paa/HelloDotnet.csproj",
       "projectName": "HelloDotnet",
-      "projectPath": "/Users/macbook/Documents/learn-api-dotnet/HelloDotnet/HelloDotnet.csproj",
+      "projectPath": "/Users/macbook/Documents/paa-task-dotnet/task1_paa/HelloDotnet.csproj",
       "packagesPath": "/Users/macbook/.nuget/packages/",
-      "outputPath": "/Users/macbook/Documents/learn-api-dotnet/HelloDotnet/obj/",
+      "outputPath": "/Users/macbook/Documents/paa-task-dotnet/task1_paa/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/macbook/.nuget/NuGet/NuGet.Config"

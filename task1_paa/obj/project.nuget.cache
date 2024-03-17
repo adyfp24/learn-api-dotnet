@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AdJ1zK8Mj1Pv+oFOtGLtNGc3S3CjSBmWO16I4m0sAtYr3+xd3fk7xoMgScHvOJt9KfaHTDZjbUh6cVyJymjyWA==",
+  "dgSpecHash": "viwX6WuKVm/m9Gf16kss2HDBgikb98E0EfJu7ar4L2CkFcSY/CxbyIs9GAQV1rIze08guo+8qC9mzfTRrhQaKQ==",
   "success": true,
-  "projectFilePath": "/Users/macbook/Documents/learn-api-dotnet/HelloDotnet/HelloDotnet.csproj",
+  "projectFilePath": "/Users/macbook/Documents/paa-task-dotnet/task1_paa/HelloDotnet.csproj",
   "expectedPackageFiles": [
     "/Users/macbook/.nuget/packages/bouncycastle.netcore/1.8.5/bouncycastle.netcore.1.8.5.nupkg.sha512",
     "/Users/macbook/.nuget/packages/google.protobuf/3.11.4/google.protobuf.3.11.4.nupkg.sha512",
