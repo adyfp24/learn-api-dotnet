@@ -27,6 +27,12 @@ namespace task2_paa.Controllers
             List<Person> ListPerson = context.ListPerson();
             return Ok(ListPerson);
         }
-        public 
+        [HttpGet("id_person")]
+        public ActionResult<Person> getPersonById(int id_person)
+        {
+            PersonContext context = new PersonContext(this.__constr);
+            Person person = context.getPersonById(id_person);
+            return Ok(person);
+        }
     }
 }

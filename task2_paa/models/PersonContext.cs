@@ -43,5 +43,31 @@ namespace task2_paa.Models
             }
             return list1;
         }
+
+        public Person getPersonById(int id_person)
+        {
+            string query = "SELECT id_person, nama, alamat, email FROM users.Person WHERE id_person = @id_person";
+            SqlDBHelper db = new SqlDBHelper(this.__constr);
+            try{
+                NpgsqlCommand cmd = db.getNpgsqlCommand(query);
+                cmd.Parameters.AddWithValue("@id_person", id_person);
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    return new Person()
+                    {
+                        id_person = int.Parse(reader["id_person"].ToString()),
+                        nama = reader["nama"].ToString(),
+                        alamat = reader["alamat"].ToString(),
+                        email = reader["email"].ToString()
+                    };
+                }
+                return null;
+            }catch (Exception ex)
+            {
+                __ErrorMsg = ex.Message;
+                return null;
+            }
+        }
     }
 }
