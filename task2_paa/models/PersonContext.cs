@@ -84,5 +84,20 @@ namespace task2_paa.Models
                 __ErrorMsg = ex.Message;
             }
         }
+        public void updatePerson(int id_person, Person person)
+        {
+            string query = "UPDATE users.Person SET nama = @nama, alamat = @alamat, email = @email WHERE id_person = @id_person";
+            SqlDBHelper db = new SqlDBHelper(this.__constr);
+            try{
+                NpgsqlCommand cmd = db.getNpgsqlCommand(query);
+                cmd.Parameters.AddWithValue("@nama", person.nama);
+                cmd.Parameters.AddWithValue("@alamat", person.alamat);
+                cmd.Parameters.AddWithValue("@email", person.email);
+                cmd.Parameters.AddWithValue("@id_person", person.id_person);
+                cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                __ErrorMsg = ex.Message;
+            }
+        }
     }
 }

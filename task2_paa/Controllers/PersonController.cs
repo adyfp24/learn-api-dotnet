@@ -41,11 +41,17 @@ namespace task2_paa.Controllers
             context.addPerson(person);
             return CreatedAtAction(nameof(getPersonById), new { id = person.id_person }, person);
         }
-        // [HttpPut]
-        // public ActionResult<Person> updatePerson(int id_person, [FromBody]Person person)
-        // {
-        //     PersonContext context = new PersonContext(this.__constr);
-        // }
+        [HttpPut("id_person")]
+        public ActionResult<Person> updatePerson(int id_person, [FromBody]Person person)
+        {
+            PersonContext context = new PersonContext(this.__constr);
+            var existedPerson = context.getPersonById(id_person);
+            if(existedPerson == null){
+                return NotFound();
+            }
+            context.updatePerson(id_person, person);
+            return NoContent();
+        }
         // [HttpDelete]
         // public ActionResult<Person> deletePerson(int id_person, [FromBody]Person person)
         // {
