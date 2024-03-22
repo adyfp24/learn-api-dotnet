@@ -93,7 +93,20 @@ namespace task2_paa.Models
                 cmd.Parameters.AddWithValue("@nama", person.nama);
                 cmd.Parameters.AddWithValue("@alamat", person.alamat);
                 cmd.Parameters.AddWithValue("@email", person.email);
-                cmd.Parameters.AddWithValue("@id_person", person.id_person);
+                cmd.Parameters.AddWithValue("@id_person", id_person);
+                cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                __ErrorMsg = ex.Message;
+            }
+        }
+
+        public void deletePerson(int id_person)
+        {
+            string query = "DELETE FROM users.person WHERE id_person = @id_person";
+            SqlDBHelper db = new SqlDBHelper(this.__constr);
+            try{
+                NpgsqlCommand cmd = db.getNpgsqlCommand(query);
+                cmd.Parameters.AddWithValue("@id_person", id_person);
                 cmd.ExecuteNonQuery();
             } catch (Exception ex) {
                 __ErrorMsg = ex.Message;
