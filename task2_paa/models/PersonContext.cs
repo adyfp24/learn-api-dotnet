@@ -62,11 +62,26 @@ namespace task2_paa.Models
                         email = reader["email"].ToString()
                     };
                 }
+                cmd.Dispose();
+                db.closeConnection();
                 return null;
-            }catch (Exception ex)
-            {
+            }catch (Exception ex) {
                 __ErrorMsg = ex.Message;
                 return null;
+            }
+        }
+        public void addPerson(Person person)
+        {
+            string query = "INSERT INTO users.Person(nama, alamat, email) VALUES(@nama, @alamat, @email)";
+            SqlDBHelper db = new SqlDBHelper(this.__constr);
+            try{
+                NpgsqlCommand cmd = db.getNpgsqlCommand(query);
+                cmd.Parameters.AddWithValue("@nama", person.nama);
+                cmd.Parameters.AddWithValue("@alamat", person.alamat);
+                cmd.Parameters.AddWithValue("@email", person.email);
+                cmd.ExecuteNonQuery();      
+            } catch (Exception ex){
+                __ErrorMsg = ex.Message;
             }
         }
     }
