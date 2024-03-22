@@ -27,5 +27,6 @@ namespace task2_paa.Controllers
             List<Person> ListPerson = context.ListPerson();
             return Ok(ListPerson);
         }
+        public 
     }
 }

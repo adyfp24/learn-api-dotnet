@@ -18,7 +18,7 @@ namespace task2_paa.Models
         public List<Person> ListPerson()
         {
             List<Person> list1 = new List<Person>();
-            string query = string.Format(@"SELECT id_person, nama, alamat, email FROM users.person");
+            string query = string.Format(@"SELECT id_person, nama, alamat, email FROM users.Person");
             SqlDBHelper db = new SqlDBHelper(this.__constr);
             try
             {
