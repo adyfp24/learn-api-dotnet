@@ -2,11 +2,11 @@ using System.Collections.Generic;
 
 namespace task2_paa.Models
 {
-    public class Person
+    public class Student
     {
-        public int id_person { get; set; }
+        public int id_murid { get; set; }
         public string nama { get; set; }
         public string alamat { get; set; }
-        public string email { get; set; }
+        public string nisn { get; set; }
     }
 }

@@ -5,20 +5,20 @@ using Npgsql;
 
 namespace task2_paa.Models
 {
-    public class PersonContext
+    public class StudentContext
     {
         private string __constr;
         private string __ErrorMsg;
         
-        public PersonContext(string pConstr)
+        public StudentContext(string pConstr)
         {
             __constr = pConstr;
         }
 
-        public List<Person> ListPerson()
+        public List<Student> ListStudent()
         {
-            List<Person> list1 = new List<Person>();
-            string query = string.Format(@"SELECT id_person, nama, alamat, email FROM users.Person");
+            List<Student> list1 = new List<Student>();
+            string query = string.Format(@"SELECT id_murid, nama, alamat, nisn FROM sekolah.murid");
             SqlDBHelper db = new SqlDBHelper(this.__constr);
             try
             {
@@ -26,12 +26,12 @@ namespace task2_paa.Models
                 NpgsqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    list1.Add(new Person()
+                    list1.Add(new Student()
                     {
-                        id_person = int.Parse(reader["id_person"].ToString()),
+                        id_murid = int.Parse(reader["id_murid"].ToString()),
                         nama = reader["nama"].ToString(),
                         alamat = reader["alamat"].ToString(),
-                        email = reader["email"].ToString()
+                        nisn = reader["nisn"].ToString()
                     });
                 }
                 cmd.Dispose();
@@ -44,22 +44,22 @@ namespace task2_paa.Models
             return list1;
         }
 
-        public Person getPersonById(int id_person)
+        public Student getStudentById(int id_murid)
         {
-            string query = "SELECT id_person, nama, alamat, email FROM users.Person WHERE id_person = @id_person";
+            string query = "SELECT id_murid, nama, alamat, nisn FROM sekolah.murid WHERE id_murid = @id_murid";
             SqlDBHelper db = new SqlDBHelper(this.__constr);
             try{
                 NpgsqlCommand cmd = db.getNpgsqlCommand(query);
-                cmd.Parameters.AddWithValue("@id_person", id_person);
+                cmd.Parameters.AddWithValue("@id_murid", id_murid);
                 NpgsqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    return new Person()
+                    return new Student()
                     {
-                        id_person = int.Parse(reader["id_person"].ToString()),
+                        id_murid = int.Parse(reader["id_murid"].ToString()),
                         nama = reader["nama"].ToString(),
                         alamat = reader["alamat"].ToString(),
-                        email = reader["email"].ToString()
+                        nisn = reader["nisn"].ToString()
                     };
                 }
                 cmd.Dispose();
@@ -70,43 +70,43 @@ namespace task2_paa.Models
                 return null;
             }
         }
-        public void addPerson(Person person)
+        public void addStudent(Student student)
         {
-            string query = "INSERT INTO users.Person(nama, alamat, email) VALUES(@nama, @alamat, @email)";
+            string query = "INSERT INTO sekolah.murid(nama, alamat, nisn) VALUES(@nama, @alamat, @nisn)";
             SqlDBHelper db = new SqlDBHelper(this.__constr);
             try{
                 NpgsqlCommand cmd = db.getNpgsqlCommand(query);
-                cmd.Parameters.AddWithValue("@nama", person.nama);
-                cmd.Parameters.AddWithValue("@alamat", person.alamat);
-                cmd.Parameters.AddWithValue("@email", person.email);
+                cmd.Parameters.AddWithValue("@nama", student.nama);
+                cmd.Parameters.AddWithValue("@alamat", student.alamat);
+                cmd.Parameters.AddWithValue("@nisn", student.nisn);
                 cmd.ExecuteNonQuery();      
             } catch (Exception ex){
                 __ErrorMsg = ex.Message;
             }
         }
-        public void updatePerson(int id_person, Person person)
+        public void updateStudent(int id_murid, Student student)
         {
-            string query = "UPDATE users.Person SET nama = @nama, alamat = @alamat, email = @email WHERE id_person = @id_person";
+            string query = "UPDATE sekolah.murid SET nama = @nama, alamat = @alamat, nisn = @nisn WHERE id_murid = @id_murid";
             SqlDBHelper db = new SqlDBHelper(this.__constr);
             try{
                 NpgsqlCommand cmd = db.getNpgsqlCommand(query);
-                cmd.Parameters.AddWithValue("@nama", person.nama);
-                cmd.Parameters.AddWithValue("@alamat", person.alamat);
-                cmd.Parameters.AddWithValue("@email", person.email);
-                cmd.Parameters.AddWithValue("@id_person", id_person);
+                cmd.Parameters.AddWithValue("@nama", student.nama);
+                cmd.Parameters.AddWithValue("@alamat", student.alamat);
+                cmd.Parameters.AddWithValue("@nisn", student.nisn);
+                cmd.Parameters.AddWithValue("@id_murid", id_murid);
                 cmd.ExecuteNonQuery();
             } catch (Exception ex) {
                 __ErrorMsg = ex.Message;
             }
         }
 
-        public void deletePerson(int id_person)
+        public void deleteStudent(int id_murid)
         {
-            string query = "DELETE FROM users.person WHERE id_person = @id_person";
+            string query = "DELETE FROM sekolah.murid WHERE id_murid = @id_murid";
             SqlDBHelper db = new SqlDBHelper(this.__constr);
             try{
                 NpgsqlCommand cmd = db.getNpgsqlCommand(query);
-                cmd.Parameters.AddWithValue("@id_person", id_person);
+                cmd.Parameters.AddWithValue("@id_murid", id_murid);
                 cmd.ExecuteNonQuery();
             } catch (Exception ex) {
                 __ErrorMsg = ex.Message;
