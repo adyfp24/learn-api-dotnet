@@ -1,0 +1,7 @@
+/Users/macbook/Documents/paa-task-dotnet/task3_paa/obj/Debug/net5.0/task3_paa.csproj.AssemblyReference.cache
+/Users/macbook/Documents/paa-task-dotnet/task3_paa/obj/Debug/net5.0/task3_paa.GeneratedMSBuildEditorConfig.editorconfig
+/Users/macbook/Documents/paa-task-dotnet/task3_paa/obj/Debug/net5.0/task3_paa.AssemblyInfoInputs.cache
+/Users/macbook/Documents/paa-task-dotnet/task3_paa/obj/Debug/net5.0/task3_paa.AssemblyInfo.cs
+/Users/macbook/Documents/paa-task-dotnet/task3_paa/obj/Debug/net5.0/task3_paa.csproj.CoreCompileInputs.cache
+/Users/macbook/Documents/paa-task-dotnet/task3_paa/obj/Debug/net5.0/task3_paa.MvcApplicationPartsAssemblyInfo.cs
+/Users/macbook/Documents/paa-task-dotnet/task3_paa/obj/Debug/net5.0/task3_paa.MvcApplicationPartsAssemblyInfo.cache
