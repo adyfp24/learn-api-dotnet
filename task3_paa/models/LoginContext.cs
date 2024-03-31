@@ -46,8 +46,6 @@ namespace task3_paa.Models
                         id_peran = int.Parse(reader["id_peran"].ToString()),
                         nama_peran = reader["nama_peran"].ToString(),
                         token = GenerateJwtToken(p_username, p_password, p_config)
-
-
                     });
                 }
 
