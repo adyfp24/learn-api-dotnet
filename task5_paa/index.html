@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>CRUD Produk</title>
     <style>
         body {
@@ -39,21 +40,31 @@
     </style>
 </head>
 
-<body class="px-16 py-16 min-h-screen">
-    <h1 class="mb-6 text-white">Selamat datang, silahkan login untuk menambah atau mengubah data product</h1>
+<body class="px-16 py-16  min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-blue-400 rounded-xl p-4 flex justify-between items-center">
+        <div class="text-white text-xl font-bold">Modul 5 - Ady Firdaus</div>
+        <div>
+            <button class="btn-secondary px-4 py-2 rounded register-btn mr-2" onclick="window.location.href='pages/register.html'">Register</button>
+            <button class="btn-secondary px-4 py-2 rounded logout-btn hidden">Logout</button>
+            <button class="btn-secondary px-4 py-2 rounded login-btn" onclick="window.location.href='pages/login.html'">Login</button>
+        </div>
+    </nav>
+
+    <h1 class="my-6 font-semibold text-white">Selamat datang di toko rempah Ady!</h1>
     <div class="container mx-auto py-8">
-        <h1 class="text-3xl font-bold text-center mb-6">CRUD Produk Modul 5 Ady</h1>
+        <h1 class="text-3xl font-bold text-center mb-6">CRUD Product - Toko Rempah</h1>
 
         <button id="openModalBtn" class="mb-4 btn-primary px-4 py-2 rounded">Tambah Produk</button>
 
         <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
             <thead class="bg-blue-200">
                 <tr>
-                    <th class="w-1/12 px-4 py-2 text-blue-800">No</th>
-                    <th class="w-3/12 px-4 py-2 text-blue-800">Nama Produk</th>
-                    <th class="w-2/12 px-4 py-2 text-blue-800">Harga</th>
-                    <th class="w-2/12 px-4 py-2 text-blue-800">Stok Barang</th>
-                    <th class="w-2/12 px-4 py-2 text-blue-800">Aksi</th>
+                    <th class="w-1/12 px-4 py-2 text-blue-400">No</th>
+                    <th class="w-3/12 px-4 py-2 text-blue-400">Nama Produk</th>
+                    <th class="w-2/12 px-4 py-2 text-blue-400">Harga</th>
+                    <th class="w-2/12 px-4 py-2 text-blue-400">Stok Barang</th>
+                    <th class="w-2/12 px-4 py-2 text-blue-400">Aksi</th>
                 </tr>
             </thead>
             <tbody id="productTableBody">
@@ -87,6 +98,25 @@
 
     <script>
         $(document).ready(function() {
+            const token = localStorage.getItem('token');
+
+        if (token) {
+            
+            $(".register-btn").hide();
+            $(".logout-btn").show();
+            $(".login-btn").hide();
+        } else {
+            
+            $(".login-btn").show();
+            $(".register-btn").show();
+            $(".logout-btn").hide();
+        }
+
+        $(".logout-btn").click(function() {
+            
+            localStorage.removeItem('token');
+            window.location.href = 'pages/login.html';
+        });
             let products = [];
             let editIndex = -1;
 
@@ -114,9 +144,13 @@
                             <td class="border px-4 py-2">${product.name}</td>
                             <td class="border px-4 py-2">${product.price}</td>
                             <td class="border px-4 py-2">${product.stock}</td>
-                            <td class="border px-4 py-2">
-                                <button class="btn-secondary px-2 py-1 rounded mr-2 editBtn" data-id="${product.id}" data-index="${index}">Update</button>
-                                <button class="btn-secondary px-2 py-1 rounded deleteBtn" data-id="${product.id}">Hapus</button>
+                            <td class="border px-4 py-2 flex justify-center">
+                                <button class="btn-secondary p-2 rounded mr-2 editBtn" data-id="${product.id}" data-index="${index}">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-secondary p-2 rounded deleteBtn" data-id="${product.id}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
                             </td>
                         </tr>
                     `);
@@ -136,7 +170,7 @@
                 $(".deleteBtn").click(function() {
                     const id = $(this).data("id");
                     $.ajax({
-                        url: `http://localhost:4000/product/${id}`,
+                        url: `https://localhost:7131/products/${id}`,
                         method: 'DELETE',
                         success: function() {
                             fetchProducts();
@@ -162,47 +196,60 @@
             });
 
             $("#saveProductBtn").click(function() {
-                const id = $("#productId").val();
-                const name = $("#productName").val();
-                const price = $("#productPrice").val();
-                const stock = $("#productStock").val();
+            const id = $("#productId").val();
+            const name = $("#productName").val();
+            const price = $("#productPrice").val();
+            const stock = $("#productStock").val();
 
-                if (name && price && stock) {
-                    const productData = { name, price, stock };
-                    if (id) {
-                        $.ajax({
-                            url: `http://localhost:4000/product/${id}`,
-                            method: 'PUT',
-                            contentType: 'application/json',
-                            data: JSON.stringify(productData),
-                            success: function() {
-                                fetchProducts();
-                                $("#productModal").removeClass("flex").addClass("hidden");
-                            },
-                            error: function() {
-                                alert('Gagal memperbarui produk');
-                            }
-                        });
-                    } else {
-                        $.ajax({
-                            url: 'http://localhost:4000/product',
-                            method: 'POST',
-                            contentType: 'application/json',
-                            data: JSON.stringify(productData),
-                            success: function() {
-                                fetchProducts();
-                                $("#productModal").removeClass("flex").addClass("hidden");
-                            },
-                            error: function() {
-                                alert('Gagal menambah produk');
-                            }
-                        });
-                    }
-                } else {
-                    alert("Semua kolom harus diisi!");
+            if (name && price && stock) {
+                const productData = { name, price, stock };
+                const token = localStorage.getItem('token'); 
+
+                if (!token) {
+               
+                    alert("Anda harus login untuk menambah atau mengubah data produk");
+                    return;
                 }
-            });
 
+                const headers = {
+                    'Authorization': `Bearer ${token}`
+                };
+
+                if (id) {
+                    $.ajax({
+                        url: `https://localhost:7131/products/${id}`,
+                        method: 'PUT',
+                        headers: headers,
+                        contentType: 'application/json',
+                        data: JSON.stringify(productData),
+                        success: function() {
+                            fetchProducts();
+                            $("#productModal").removeClass("flex").addClass("hidden");
+                        },
+                        error: function() {
+                            alert('Gagal memperbarui produk');
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        url: 'https://localhost:7131/products',
+                        method: 'POST',
+                        headers: headers,
+                        contentType: 'application/json',
+                        data: JSON.stringify(productData),
+                        success: function() {
+                            fetchProducts();
+                            $("#productModal").removeClass("flex").addClass("hidden");
+                        },
+                        error: function() {
+                            alert('Gagal menambah produk');
+                        }
+                    });
+                }
+            } else {
+                alert("Semua kolom harus diisi!");
+            }
+        });
             fetchProducts();
         });
     </script>
