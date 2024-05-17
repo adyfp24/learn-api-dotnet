@@ -21,9 +21,21 @@ namespace task7_paa.Helpers{
             return cmd; 
         }
 
-        public void closeConnection(){
-            connection.Close();
+        public void closeConnection()
+        {
+            if (connection.State != ConnectionState.Closed)
+                connection.Close();
+        }
+
+         public void Dispose()
+        {
+            if (connection != null)
+            {
+                closeConnection();
+                connection.Dispose();
+            }
         }
     }
+
 
 }

@@ -24,12 +24,12 @@ namespace task7_paa.Controllers
         public async Task<IActionResult> ImportPersonDetails()
         {
             string apiUrl = "https://dummy-user-tan.vercel.app/user";
-            List<PersonDetail> personDetails;
+            List<PersonDetailFromApi> personDetailsFromApi;
 
             try
             {
                 var response = await _httpClient.GetStringAsync(apiUrl);
-                personDetails = JsonConvert.DeserializeObject<List<PersonDetail>>(response);
+                personDetailsFromApi = JsonConvert.DeserializeObject<List<PersonDetailFromApi>>(response);
             }
             catch (Exception ex)
             {
@@ -39,7 +39,7 @@ namespace task7_paa.Controllers
             try
             {
                 PDetailContext context = new PDetailContext(_constr);
-                context.InsertPersonDetails(personDetails);
+                context.InsertPersonDetails(personDetailsFromApi);
             }
             catch (Exception ex)
             {
@@ -48,5 +48,6 @@ namespace task7_paa.Controllers
 
             return Ok("Data imported successfully");
         }
+
     }
 }
