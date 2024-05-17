@@ -41,3 +41,4 @@
 /Users/macbook/Documents/paa-task-dotnet/task7_paa/bin/Debug/net5.0/System.Text.Encodings.Web.dll
 /Users/macbook/Documents/paa-task-dotnet/task7_paa/bin/Debug/net5.0/System.Text.Json.dll
 /Users/macbook/Documents/paa-task-dotnet/task7_paa/bin/Debug/net5.0/System.Threading.Channels.dll
+/Users/macbook/Documents/paa-task-dotnet/task7_paa/bin/Debug/net5.0/Newtonsoft.Json.dll

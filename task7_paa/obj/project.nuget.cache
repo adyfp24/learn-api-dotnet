@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "gmNKL7nXau/NUoUilO2MdyxBT6Et+s1iwB3U1kjR3lXopbEnnfSx4oL1g1HyZ9Rgq3rYY7U0damHk/omuhXGIQ==",
+  "dgSpecHash": "ETCxHib74FA9rExHYFgDWuqC6kGujZDdiHIzZTo3ZT3tU5+W0z7sKjaMVMJWWMt9NSYN6za1UHm3GFz1ey4DMQ==",
   "success": true,
   "projectFilePath": "/Users/macbook/Documents/paa-task-dotnet/task7_paa/task7_paa.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "/Users/macbook/.nuget/packages/microsoft.identitymodel.logging/7.5.2/microsoft.identitymodel.logging.7.5.2.nupkg.sha512",
     "/Users/macbook/.nuget/packages/microsoft.identitymodel.tokens/7.5.2/microsoft.identitymodel.tokens.7.5.2.nupkg.sha512",
     "/Users/macbook/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/macbook/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/Users/macbook/.nuget/packages/npgsql/8.0.3/npgsql.8.0.3.nupkg.sha512",
     "/Users/macbook/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "/Users/macbook/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",

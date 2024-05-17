@@ -25,12 +25,12 @@ namespace task7_paa.Controllers{
             List<Person> ListPerson = context.ListPerson();
             return Ok(ListPerson);
         }
-        // [HttpGet("{id}")]
-        // public ActionResult<Person> getPersonById(int id_person)
-        // {
-        //     PersonContext context = new PersonContext(this.__constr);
-        //     Person person = context.getPersonById(id_person);
-        //     return Ok(person);
-        // }
+        [HttpGet("person/{id}")]
+        public ActionResult<Person> getPersonById(int id)
+        {
+            PersonContext context = new PersonContext(this.__constr);
+            Person person = context.getPersonById(id);
+            return Ok(person);
+        }
     }
 }
